@@ -1,0 +1,45 @@
+# 1 ok
+SELECT count(*)
+FROM flights;
+
+# 2 ok
+SELECT distinct origin, AVG(ArrDelay) AS prom_arrivals, AVG(DepDelay) AS prom_departures
+FROM flights
+GROUP BY origin;
+
+# 3 ok
+SELECT GROUP_CONCAT(origin, ',', colyear, ',', colmonth) AS Result
+FROM flights
+group by origin;
+
+
+
+# 3 NO
+SELECT origin, colyear, colmonth, AVG(arrDelay) as Prom_Arr
+FROM flights
+ORDER BY origin;
+
+
+# 4 no acabado
+SELECT city, colyear, colmonth
+FROM flights
+INNER JOIN USAirports
+ORDER BY city;
+
+# 5 no acabado
+SELECT uniquecarrier, colyear, colmonth, (cancelled) as total_cancelled
+FROM flights
+INNER JOIN USAirports
+ORDER BY cancelled DESC;
+
+#6 OK
+SELECT TailNum, SUM(distance) as total_Distance
+FROM flights
+GROUP BY TailNum
+ORDER BY total_Distance DESC;
+
+# 7 OK
+SELECT DISTINCT uniqueCarrier, avg(arrdelay) as avgDelay
+FROM Flights
+GROUP BY uniquecarrier
+ORDER BY avgDelay DESC;
